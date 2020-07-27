@@ -15,7 +15,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import ru.job4j.puzzle.firuges.Block;
 import ru.job4j.puzzle.firuges.Cell;
-import ru.job4j.puzzle.firuges.Checker;
+//import ru.job4j.puzzle.firuges.Checker;
 import ru.job4j.puzzle.firuges.Figure;
 
 import java.util.Random;
@@ -134,7 +134,7 @@ public class Puzzle extends Application {
                 if (block) {
                     this.add(new Block(position), grid);
                 } else {
-                    this.add(new Checker(position), grid);
+ //                   this.add(new Checker(position), grid);
                 }
                 count--;
             }

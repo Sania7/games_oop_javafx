@@ -35,8 +35,8 @@ public class Logic {
         boolean result = cells.length > 0;
         for (Cell cell : cells) {
             if (findBy(cell) != -1) {
-               result = false;
-               break;
+                result = false;
+                break;
             }
         }
         return result;
@@ -60,25 +60,56 @@ public class Logic {
         return rst;
     }
 
-    public boolean isWin() {
-        return Win.check(convert());
-    }
-
-    public int[][] convert() {
-        int[][] table = new int[size][size];
-        for (int row = 0; row != table.length; row++) {
-            for (int cell = 0; cell != table.length; cell++) {
-                int position = findBy(new Cell(row, cell));
-                if (position != -1 && figures[position].movable()) {
-                    table[row][cell] = 1;
+        public boolean isWin() {
+            int[][] table = this.convert();
+            boolean result = false;
+            for (int i = 0; i < table.length; i++) {
+                if (table[index][index] == 1) {
+                    if (monoHorizontal(table, i) || monoVertical(table, i)) {
+                        result = true;
+                        break;
+                    }
                 }
             }
+            return result;
         }
-        return table;
+    public boolean monoHorizontal(int[][] board, int row) {
+        boolean result = true;
+        for (int index = 0; index < board.length; index++) {
+            if (board[row][index] != 1) {
+                result = false;
+                break;
+            }
+        }
+        return result;
+    }
+    public boolean monoVertical(int[][] board, int column) {
+        boolean result = true;
+        for (int i = 0; i < board.length; i++) {
+            if (board[i][column] != 1) {
+                result = false;
+                break;
+            }
+        }
+        return result;
     }
 
-    @Override
-    public String toString() {
-        return Arrays.toString(convert());
-    }
+        public int[][] convert() {
+            int[][] table = new int[size][size];
+            for (int row = 0; row != table.length; row++) {
+                for (int cell = 0; cell != table.length; cell++) {
+                    int position = findBy(new Cell(row, cell));
+                    if (position != -1 && figures[position].movable()) {
+                        table[row][cell] = 1;
+                    }
+                }
+            }
+            return table;
+        }
+
+        @Override
+        public String toString() {
+            return Arrays.toString(convert());
+        }
+
 }
