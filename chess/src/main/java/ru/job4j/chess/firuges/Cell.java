@@ -10,6 +10,7 @@ public enum Cell {
     G1(6, 7), G2(6, 6), G3(6, 5), G4(6, 4), G5(6, 3), G6(6, 2), G7(6, 1), G8(6, 0),
     H1(7, 7), H2(7, 6), H3(7, 5), H4(7, 4), H5(7, 3), H6(7, 2), H7(7, 1), H8(7, 0);
 
+
     private final int x;
     private final int y;
 

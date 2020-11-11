@@ -105,7 +105,7 @@ public final class Chess extends Application {
         control.getChildren().addAll(start);
         border.setBottom(control);
         border.setCenter(buildGrid());
-        stage.setScene(new Scene(border, 400, 400));
+        stage.setScene(new Scene(border, 500, 500));
         stage.setTitle(JOB4J);
         stage.setResizable(false);
         stage.show();
