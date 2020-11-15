@@ -9,24 +9,44 @@ public final class Logic {
     private int index = 0;
 
     public void add(Figure figure) {
-        figures[index++] = figure;
+        this.figures[this.index++] = figure;
     }
 
-    public void move(Cell source, Cell dest)
-            throws FigureNotFoundException, ImpossibleMoveException, OccupiedCellException {
-        int index = findBy(source);
-        Cell[] steps = figures[index].way(dest);
-        free(steps);
-        figures[index] = figures[index].copy(dest);
+    public boolean move(Cell source, Cell dest) {
+        boolean rsl = false;
+        try {
+            int index1 = this.findBy(source);
+            if (index1 != -1) {
+                Cell[] steps = this.figures[index1].way(source, dest);
+                free(steps);
+                if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
+                    rsl = true;
+                    this.figures[index1] = this.figures[index1].copy(dest);
+                }
+            }
+        } catch (IllegalStateException e) {
+            System.out.println(String.format("Way is not free, try again."));
+        }
+        return rsl;
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
-        return true;
+        boolean rst = true;
+        for (int i = 0; i < steps.length; i++) {
+            for (int j = 0; j < index; j++) {
+                if (steps[i].equals(figures[j].position())) {
+                    throw new IllegalStateException();
+                }
+            }
+        }
+        return rst;
     }
 
     public void clean() {
-        Arrays.fill(figures, null);
-        index = 0;
+        for (int position = 0; position != this.figures.length; position++) {
+            this.figures[position] = null;
+        }
+        this.index = 0;
     }
 
     private int findBy(Cell cell) throws FigureNotFoundException {
