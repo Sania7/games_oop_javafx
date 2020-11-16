@@ -18,12 +18,18 @@ public class BishopBlackTest {
     @Test
     public void CopyBishop() {
         BishopBlack bishopBlack = new BishopBlack(Cell.C8);
-        assertEquals(bishopBlack.copy(Cell.C5), new BishopBlack(Cell.C5));
+        Figure copy = bishopBlack.copy(Cell.C5);
+        assertEquals(copy.position(), Cell.C5);
     }
     @Test
     public void BishopWay()throws ImpossibleMoveException {
         BishopBlack bishopBlack = new BishopBlack(Cell.C1);
         Cell[] result = {Cell.D2, Cell.E3, Cell.F4, Cell.G5};
         assertThat(bishopBlack.way(Cell.G5), is(result));
+    }
+    @Test (expected = ImpossibleMoveException.class)
+    public void when111() throws ImpossibleMoveException {
+        BishopBlack bishopBlack = new BishopBlack(Cell.C1);
+        bishopBlack.way(Cell.C4);
     }
 }

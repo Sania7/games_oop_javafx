@@ -12,12 +12,13 @@ public final class Logic {
         this.figures[this.index++] = figure;
     }
 
-    public boolean move(Cell source, Cell dest) {
+    public boolean move(Cell source, Cell dest)
+            throws FigureNotFoundException, ImpossibleMoveException, OccupiedCellException {
         boolean rsl = false;
         try {
             int index1 = this.findBy(source);
             if (index1 != -1) {
-                Cell[] steps = this.figures[index1].way(source, dest);
+                Cell[] steps = this.figures[index1].way(dest);
                 free(steps);
                 if (steps.length > 0 && steps[steps.length - 1].equals(dest)) {
                     rsl = true;
