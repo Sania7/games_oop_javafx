@@ -11,7 +11,7 @@ public class LogicTest {
     @Test (expected = OccupiedCellException.class)
     public void WhenNoWay() throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
         Logic logic = new Logic();
-        logic.add(new BishopBlack(Cell.B1));
+        logic.add(new BishopBlack(Cell.C1));
         logic.add(new PawnBlack(Cell.D2));
         logic.move(Cell.C1, Cell.H6);
     }

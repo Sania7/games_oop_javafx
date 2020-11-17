@@ -36,7 +36,7 @@ public final class Logic {
         for (int i = 0; i < steps.length; i++) {
             for (int j = 0; j < index; j++) {
                 if (steps[i].equals(figures[j].position())) {
-                    throw new IllegalStateException();
+                    throw new OccupiedCellException();
                 }
             }
         }
